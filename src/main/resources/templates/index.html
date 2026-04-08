@@ -1,25 +1,58 @@
 <!DOCTYPE html>
-<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+<html lang="pt-PT" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Biblioteca - Inicio</title>
+    <title>Biblioteca - Início</title>
     <link rel="stylesheet" href="/css/Style.css">
     <link rel="stylesheet" href="/css/index.css">
 </head>
 <body>
 <main class="container home-container">
     <header class="header">
-        <h1>Biblioteca</h1>
-        <a th:href="@{/listbooks}" class="btn btn-primary">Ver livros</a>
+        <div class="brand">
+            <p class="kicker">Painel da biblioteca</p>
+            <h1>Biblioteca</h1>
+        </div>
+        <a th:href="@{/addbook}" class="btn btn-primary">Adicionar livro</a>
     </header>
 
     <section class="hero-card">
-        <h2>Gerencie seu acervo de forma simples</h2>
-        <p>Cadastre, edite e acompanhe os livros da sua biblioteca em uma interface mais clara e organizada.</p>
+        <h2>Gira o seu acervo com clareza e rapidez</h2>
+        <p>Organize títulos, autores e datas num fluxo simples para registo, edição e consulta.</p>
         <div class="hero-actions">
-            <a th:href="@{/listbooks}" class="btn btn-outline">Abrir catalogo</a>
+            <a th:href="@{/listbooks}" class="btn btn-primary">Abrir catálogo</a>
+            <a th:href="@{/addbook}" class="btn btn-outline">Novo registo</a>
         </div>
+        <div class="hero-stats">
+            <article class="stat-item">
+                <strong>Registo rápido</strong>
+                <span>Adicione novos livros com poucos campos.</span>
+            </article>
+            <article class="stat-item">
+                <strong>Edição simples</strong>
+                <span>Atualize dados e capa sempre que necessário.</span>
+            </article>
+            <article class="stat-item">
+                <strong>Visão central</strong>
+                <span>Consulte todo o acervo numa única tabela.</span>
+            </article>
+        </div>
+    </section>
+
+    <section class="highlights" aria-label="Benefícios principais">
+        <article class="highlight-card">
+            <h3>Controlo do acervo</h3>
+            <p>Mantenha o catálogo consistente com informação padronizada por livro.</p>
+        </article>
+        <article class="highlight-card">
+            <h3>Capas visíveis</h3>
+            <p>Identifique cada livro com pré-visualização da capa no registo, edição e listagem.</p>
+        </article>
+        <article class="highlight-card">
+            <h3>Fluxo objetivo</h3>
+            <p>Navegue entre início, lista e formulário sem distrações ou cliques extras.</p>
+        </article>
     </section>
 </main>
 

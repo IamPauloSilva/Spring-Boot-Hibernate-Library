@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+<html lang="pt-PT" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Editar Livro</title>
+    <title>Editar livro</title>
     <link rel="stylesheet" href="/css/Style.css">
     <link rel="stylesheet" href="/css/addbook.css">
 </head>
@@ -13,16 +13,19 @@
         <div class="page-header">
             <div>
                 <h1>Editar Livro</h1>
-                <p class="muted">Atualize as informacoes do livro selecionado.</p>
+                <p class="muted">Atualize as informações do livro selecionado.</p>
             </div>
-            <a th:href="@{/listbooks}" class="btn btn-outline">Voltar para lista</a>
+            <a th:href="@{/listbooks}" class="btn btn-outline">Voltar à lista</a>
         </div>
 
-        <form th:action="@{/editbook}" th:object="${book}" method="post" class="book-form">
+        <p class="form-error" th:if="${uploadError}" th:text="${uploadError}"></p>
+
+        <form th:action="@{/editbook}" th:object="${book}" method="post" enctype="multipart/form-data" class="book-form">
             <input type="hidden" th:field="*{id}" />
+            <input type="hidden" th:field="*{coverImagePath}" />
 
             <fieldset>
-                <label for="title">Titulo</label>
+                <label for="title">Título</label>
                 <input th:field="*{title}" type="text" id="title" required>
             </fieldset>
 
@@ -32,16 +35,30 @@
             </fieldset>
 
             <fieldset>
-                <label for="publishdate">Data de Publicacao</label>
+                <label for="publishdate">Data de publicação</label>
                 <input th:field="*{publishDate}" type="date" id="publishdate" required>
             </fieldset>
 
+            <fieldset>
+                <label for="coverFile">Trocar capa do livro</label>
+                <input id="coverFile" name="coverFile" type="file" accept="image/png, image/jpeg, image/webp" data-cover-input>
+                <small class="muted">Deixe em branco para manter a capa atual.</small>
+            </fieldset>
+
+            <div class="cover-preview-wrap">
+                <img class="cover-preview"
+                     th:src="${book.coverImagePath != null and !#strings.isEmpty(book.coverImagePath) ? book.coverImagePath : '/img/cover-placeholder.svg'}"
+                     alt="Pré-visualização da capa"
+                     data-cover-preview>
+            </div>
+
             <div class="form-actions">
-                <button type="submit" class="btn btn-primary">Salvar alteracoes</button>
+                <button type="submit" class="btn btn-primary">Guardar alterações</button>
             </div>
         </form>
     </section>
 </main>
 
+<script th:src="@{/js/book-cover-preview.js}"></script>
 </body>
 </html>

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+<html lang="pt-PT" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -13,15 +13,17 @@
         <div class="page-header">
             <div>
                 <h1>Adicionar Livro</h1>
-                <p class="muted">Preencha os dados para incluir um novo livro no catalogo.</p>
+                <p class="muted">Preencha os dados para incluir um novo livro no catálogo.</p>
             </div>
-            <a th:href="@{/listbooks}" class="btn btn-outline">Voltar para lista</a>
+            <a th:href="@{/listbooks}" class="btn btn-outline">Voltar à lista</a>
         </div>
 
-        <form th:action="@{/addbook}" th:object="${book}" method="post" class="book-form">
+        <p class="form-error" th:if="${uploadError}" th:text="${uploadError}"></p>
+
+        <form th:action="@{/addbook}" th:object="${book}" method="post" enctype="multipart/form-data" class="book-form">
             <fieldset>
-                <label for="title">Titulo</label>
-                <input th:field="*{title}" type="text" id="title" placeholder="Ex.: O Pequeno Principe" required>
+                <label for="title">Título</label>
+                <input th:field="*{title}" type="text" id="title" placeholder="Ex.: O Principezinho" required>
             </fieldset>
 
             <fieldset>
@@ -30,9 +32,19 @@
             </fieldset>
 
             <fieldset>
-                <label for="publishdate">Data de Publicacao</label>
+                <label for="publishdate">Data de publicação</label>
                 <input th:field="*{publishDate}" type="date" id="publishdate" required>
             </fieldset>
+
+            <fieldset>
+                <label for="coverFile">Capa do livro</label>
+                <input id="coverFile" name="coverFile" type="file" accept="image/png, image/jpeg, image/webp" data-cover-input>
+                <small class="muted">Formatos: JPG, PNG, WEBP (máx. 2 MB).</small>
+            </fieldset>
+
+            <div class="cover-preview-wrap">
+                <img class="cover-preview" src="/img/cover-placeholder.svg" alt="Pré-visualização da capa" data-cover-preview>
+            </div>
 
             <div class="form-actions">
                 <button type="submit" class="btn btn-primary">Adicionar</button>
@@ -41,5 +53,6 @@
     </section>
 </main>
 
+<script th:src="@{/js/book-cover-preview.js}"></script>
 </body>
 </html>

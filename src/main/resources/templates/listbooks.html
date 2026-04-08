@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+<html lang="pt-PT" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Lista de Livros</title>
+    <title>Lista de livros</title>
     <link rel="stylesheet" href="/css/Style.css">
     <link rel="stylesheet" href="/css/addbook.css">
 </head>
@@ -12,11 +12,11 @@
     <section class="card">
         <div class="page-header">
             <div>
-                <h1>Lista de Livros</h1>
-                <p class="muted">Visualize e mantenha o catalogo atualizado.</p>
+                <h1>Lista de livros</h1>
+                <p class="muted">Consulte e mantenha o catálogo atualizado.</p>
             </div>
             <div class="page-actions">
-                <a href="/" class="btn btn-outline">Inicio</a>
+                <a href="/" class="btn btn-outline">Início</a>
                 <a th:href="@{/addbook}" class="btn btn-primary">Adicionar livro</a>
             </div>
         </div>
@@ -26,22 +26,30 @@
         <thead>
         <tr>
             <th>ID</th>
+            <th>Capa</th>
             <th>Título</th>
             <th>Autor</th>
-            <th>Ano</th>
+            <th>Data de publicação</th>
             <th>Ações</th>
         </tr>
         </thead>
         <tbody>
         <tr th:each="book : ${books}">
             <td th:text="${book.id}"></td>
+            <td>
+                <img class="table-cover"
+                     th:src="${book.coverImagePath != null and !#strings.isEmpty(book.coverImagePath) ? book.coverImagePath : '/img/cover-placeholder.svg'}"
+                     th:alt="'Capa de ' + ${book.title}">
+            </td>
             <td th:text="${book.title}"></td>
             <td th:text="${book.author}"></td>
             <td th:text="${book.publishDate}"></td>
             <td class="actions-cell">
-                <a th:href="@{'/editbook/' + ${book.id}}" class="btn btn-small btn-outline">Editar</a>
-                <a th:href="@{'/deletebook/' + ${book.id}}" class="btn btn-small btn-danger"
-                   onclick="return confirm('Tem certeza que deseja deletar este livro?');">Deletar</a>
+                <div class="actions-wrap">
+                    <a th:href="@{'/editbook/' + ${book.id}}" class="btn btn-small btn-outline">Editar</a>
+                    <a th:href="@{'/deletebook/' + ${book.id}}" class="btn btn-small btn-danger"
+                       onclick="return confirm('Tem a certeza de que pretende eliminar este livro?');">Eliminar</a>
+                </div>
             </td>
         </tr>
         </tbody>

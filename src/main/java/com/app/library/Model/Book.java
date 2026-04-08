@@ -39,5 +39,10 @@ public class Book {
     @Column(name = "publishDate",  nullable = false)
     private LocalDate publishDate;
 
+    @Getter
+    @Setter
+    @Column(name = "cover_image_path", length = 255)
+    private String coverImagePath;
+
 
 }
