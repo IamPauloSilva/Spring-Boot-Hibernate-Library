@@ -1,12 +1,28 @@
-<html lang="en">
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Homepage</title>
+    <title>Biblioteca - Inicio</title>
     <link rel="stylesheet" href="/css/Style.css">
+    <link rel="stylesheet" href="/css/index.css">
 </head>
 <body>
-<h1>Welcome to Library</h1>
-<a href="listbooks">ver livros</a>
+<main class="container home-container">
+    <header class="header">
+        <h1>Biblioteca</h1>
+        <a th:href="@{/listbooks}" class="btn btn-primary">Ver livros</a>
+    </header>
+
+    <section class="hero-card">
+        <h2>Gerencie seu acervo de forma simples</h2>
+        <p>Cadastre, edite e acompanhe os livros da sua biblioteca em uma interface mais clara e organizada.</p>
+        <div class="hero-actions">
+            <a th:href="@{/listbooks}" class="btn btn-outline">Abrir catalogo</a>
+        </div>
+    </section>
+</main>
+
+
 </body>
 </html>

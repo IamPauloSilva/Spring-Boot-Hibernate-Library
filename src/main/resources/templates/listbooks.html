@@ -1,16 +1,28 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Lista de Livros</title>
+    <link rel="stylesheet" href="/css/Style.css">
+    <link rel="stylesheet" href="/css/addbook.css">
 </head>
 <body>
-<div>
-    <h1>Lista de Livros</h1>
-    <a th:href="addbook">adiciona livros</a>
+<main class="page-shell">
+    <section class="card">
+        <div class="page-header">
+            <div>
+                <h1>Lista de Livros</h1>
+                <p class="muted">Visualize e mantenha o catalogo atualizado.</p>
+            </div>
+            <div class="page-actions">
+                <a href="/" class="btn btn-outline">Inicio</a>
+                <a th:href="@{/addbook}" class="btn btn-primary">Adicionar livro</a>
+            </div>
+        </div>
 
-    <table >
-    <table >
+        <div class="table-wrap">
+            <table class="data-table">
         <thead>
         <tr>
             <th>ID</th>
@@ -26,15 +38,16 @@
             <td th:text="${book.title}"></td>
             <td th:text="${book.author}"></td>
             <td th:text="${book.publishDate}"></td>
-            <td>
-                <a th:href="@{'/editbook/' + ${book.id}}" class="button">Editar</a>
-                <a th:href="@{'/deletebook/' + ${book.id}}" class="button delete"
+            <td class="actions-cell">
+                <a th:href="@{'/editbook/' + ${book.id}}" class="btn btn-small btn-outline">Editar</a>
+                <a th:href="@{'/deletebook/' + ${book.id}}" class="btn btn-small btn-danger"
                    onclick="return confirm('Tem certeza que deseja deletar este livro?');">Deletar</a>
             </td>
-        </tr >
+        </tr>
         </tbody>
     </table>
-
-</div>
+        </div>
+    </section>
+</main>
 </body>
 </html>
